@@ -27,7 +27,6 @@
 
             <section class="actions" aria-label="Follow us">
                 <div class="socials-row socials-row-main">
-                    <!-- Facebook -->
                     <a href="https://www.facebook.com/Bobowcon" aria-label="Facebook" class="icon facebook"
                         title="Facebook" target="_blank" rel="noopener noreferrer">
                         <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -36,7 +35,6 @@
                         </svg>
                     </a>
 
-                    <!-- Instagram -->
                     <a href="https://www.instagram.com/bobowcon" aria-label="Instagram" class="icon instagram"
                         title="Instagram" target="_blank" rel="noopener noreferrer">
                         <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -55,7 +53,6 @@
                         </svg>
                     </a>
 
-                    <!-- Zalo -->
                     <a href="https://zalo.me/0966821315" aria-label="Zalo" class="icon zalo" title="Zalo"
                         target="_blank" rel="noopener noreferrer">
                         <svg viewBox="0 0 64 64" aria-hidden="true">
@@ -66,7 +63,6 @@
                         </svg>
                     </a>
 
-                    <!-- TikTok -->
                     <a href="https://www.tiktok.com/@bobowcon" aria-label="TikTok" class="icon tiktok" title="TikTok"
                         target="_blank" rel="noopener noreferrer">
                         <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -79,7 +75,6 @@
                         </svg>
                     </a>
 
-                    <!-- Discord -->
                     <a href="https://discord.gg/tT2aSRXv" aria-label="Discord" class="icon discord" title="Discord"
                         target="_blank" rel="noopener noreferrer">
                         <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -121,9 +116,117 @@
                     </span>
                     <span class="contact-text">+84 966 821 315</span>
                 </a>
+
+                <button class="qr-trigger" id="openQrBtn" type="button" aria-haspopup="dialog" aria-controls="qrModal">
+                    <span class="qr-trigger-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24">
+                            <path fill="currentColor"
+                                d="M3 3h8v8H3V3Zm2 2v4h4V5H5Zm8-2h8v8h-8V3Zm2 2v4h4V5h-4ZM3 13h8v8H3v-8Zm2 2v4h4v-4H5Zm10-2h2v2h-2v-2Zm2 2h2v2h-2v-2Zm-2 2h2v2h-2v-2Zm4 0h2v4h-6v-2h4v-2Zm-6-4h2v2h-2v-2Z" />
+                        </svg>
+                    </span>
+                    <span>QR thanh toán</span>
+                </button>
             </footer>
         </main>
     </div>
+
+    <div class="modal-overlay" id="qrModal" aria-hidden="true">
+        <div class="qr-modal" role="dialog" aria-modal="true" aria-labelledby="qrModalTitle">
+            <button class="modal-close" id="closeQrBtn" type="button" aria-label="Đóng">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path fill="currentColor"
+                        d="M18.3 5.7a1 1 0 0 0-1.4 0L12 10.6 7.1 5.7a1 1 0 1 0-1.4 1.4l4.9 4.9-4.9 4.9a1 1 0 1 0 1.4 1.4l4.9-4.9 4.9 4.9a1 1 0 0 0 1.4-1.4L13.4 12l4.9-4.9a1 1 0 0 0 0-1.4Z" />
+                </svg>
+            </button>
+
+            <h2 id="qrModalTitle">QR thanh toán</h2>
+
+            <div class="qr-box">
+                <img src="./qrbank.jpg" alt="QR ngân hàng" class="qr-image" />
+            </div>
+
+            <div class="bank-info">
+                <div class="bank-row">
+                    <span class="bank-label">Ngân hàng</span>
+                    <span class="bank-value">BIDV</span>
+                </div>
+                <div class="bank-row">
+                    <span class="bank-label">Chủ tài khoản</span>
+                    <span class="bank-value">Nguyễn Văn Hoàn </span>
+                </div>
+                <div class="bank-row">
+                    <span class="bank-label">Số tài khoản</span>
+                    <span class="bank-value" id="bankAccountNumber">4330700679</span>
+                </div>
+            </div>
+
+            <button class="copy-btn" id="copyAccountBtn" type="button">
+                <span class="copy-btn-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                        <path fill="currentColor"
+                            d="M8 7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-8a2 2 0 0 1-2-2V7Zm-4 4a2 2 0 0 1 2-2h1v8a4 4 0 0 0 4 4h5v1H8a2 2 0 0 1-2-2v-9Z" />
+                    </svg>
+                </span>
+                <span id="copyBtnText">Copy số tài khoản</span>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const openQrBtn = document.getElementById("openQrBtn");
+        const closeQrBtn = document.getElementById("closeQrBtn");
+        const qrModal = document.getElementById("qrModal");
+        const copyAccountBtn = document.getElementById("copyAccountBtn");
+        const bankAccountNumber = document.getElementById("bankAccountNumber");
+        const copyBtnText = document.getElementById("copyBtnText");
+
+        function openModal() {
+            qrModal.classList.add("show");
+            qrModal.setAttribute("aria-hidden", "false");
+            document.body.classList.add("modal-open");
+        }
+
+        function closeModal() {
+            qrModal.classList.remove("show");
+            qrModal.setAttribute("aria-hidden", "true");
+            document.body.classList.remove("modal-open");
+        }
+
+        openQrBtn.addEventListener("click", openModal);
+        closeQrBtn.addEventListener("click", closeModal);
+
+        qrModal.addEventListener("click", function (event) {
+            if (event.target === qrModal) {
+                closeModal();
+            }
+        });
+
+        document.addEventListener("keydown", function (event) {
+            if (event.key === "Escape" && qrModal.classList.contains("show")) {
+                closeModal();
+            }
+        });
+
+        copyAccountBtn.addEventListener("click", async function () {
+            const accountText = bankAccountNumber.textContent.trim();
+
+            try {
+                await navigator.clipboard.writeText(accountText);
+                copyBtnText.textContent = "Đã copy số tài khoản";
+                copyAccountBtn.classList.add("copied");
+
+                setTimeout(() => {
+                    copyBtnText.textContent = "Copy số tài khoản";
+                    copyAccountBtn.classList.remove("copied");
+                }, 1800);
+            } catch (error) {
+                copyBtnText.textContent = "Không copy được";
+                setTimeout(() => {
+                    copyBtnText.textContent = "Copy số tài khoản";
+                }, 1800);
+            }
+        });
+    </script>
 </body>
 
 </html>
