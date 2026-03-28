@@ -1,28 +1,46 @@
 :root {
-    --bg: #edf6fb;
-    --card-bg: rgba(255, 255, 255, 0.76);
-    --primary: #10a4d3;
-    --primary-strong: #0096c7;
-    --text: #1397c6;
-    --text-light: #6b86a4;
-    --border: rgba(129, 219, 241, 0.48);
+    --bg: #1a2128;
+    --bg-2: #202a34;
+    --bg-3: #283340;
+
+    --card-bg: rgba(58, 70, 84, 0.74);
+    --card-bg-strong: rgba(39, 48, 58, 0.90);
+
+    --primary: #64d1ff;
+    --primary-strong: #43c3ff;
+    --primary-soft: #bcecff;
+
+    --silver: #d8dee5;
+    --silver-soft: #edf2f6;
+    --silver-deep: #a7b2be;
+
+    --charcoal: #414d59;
+    --charcoal-soft: #53616e;
+    --charcoal-deep: #2e3944;
+
+    --text: #f5fbff;
+    --text-light: #c9d2db;
+    --text-dim: #98a5b3;
+
+    --border: rgba(215, 225, 233, 0.16);
 
     --card-shadow:
-        0 16px 40px rgba(0, 150, 199, 0.07),
-        inset 0 1px 0 rgba(255, 255, 255, 0.68);
+        0 24px 50px rgba(0, 0, 0, 0.16),
+        0 0 18px rgba(100, 209, 255, 0.04),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
 
     --soft-shadow:
-        8px 8px 18px rgba(130, 169, 198, 0.16),
-        -8px -8px 18px rgba(255, 255, 255, 0.92);
+        0 8px 18px rgba(0, 0, 0, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.10);
 
     --soft-shadow-hover:
-        10px 10px 22px rgba(130, 169, 198, 0.18),
-        -10px -10px 22px rgba(255, 255, 255, 0.98);
+        0 12px 24px rgba(0, 0, 0, 0.16),
+        0 0 12px rgba(100, 209, 255, 0.06),
+        inset 0 1px 0 rgba(255, 255, 255, 0.12);
 
     --contact-shadow:
-        inset 2px 2px 5px rgba(201, 214, 226, 0.45),
-        inset -2px -2px 5px rgba(255, 255, 255, 0.95),
-        0 4px 10px rgba(123, 169, 223, 0.08);
+        0 8px 18px rgba(0, 0, 0, 0.10),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
 * {
@@ -35,7 +53,9 @@ body {
     padding: 0;
     min-height: 100%;
     font-family: Arial, Helvetica, sans-serif;
-    background: linear-gradient(180deg, #edf6fb 0%, #ebf5fa 100%);
+    background:
+        radial-gradient(circle at top, rgba(100, 209, 255, 0.08), transparent 26%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 52%, var(--bg-3) 100%);
     color: var(--text);
 }
 
@@ -62,19 +82,35 @@ body.modal-open {
     max-width: 390px;
     padding: 40px 32px 34px;
     border-radius: 34px;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.64), rgba(255, 255, 255, 0.82));
-    border: 1.5px solid var(--border);
+    background: linear-gradient(180deg, rgba(73, 86, 100, 0.68), rgba(43, 53, 64, 0.90));
+    border: 1px solid rgba(222, 230, 236, 0.12);
     box-shadow: var(--card-shadow);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(18px);
     overflow: hidden;
+}
+
+.card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(180deg,
+            rgba(255, 255, 255, 0.22),
+            rgba(100, 209, 255, 0.06),
+            rgba(255, 255, 255, 0.01));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
 }
 
 .glow-bg {
     position: absolute;
     inset: 0;
     background:
-        radial-gradient(circle at 50% 0%, rgba(49, 190, 235, 0.11), transparent 34%),
-        radial-gradient(circle at 50% 100%, rgba(49, 190, 235, 0.05), transparent 42%);
+        radial-gradient(circle at 50% 0%, rgba(100, 209, 255, 0.06), transparent 30%),
+        radial-gradient(circle at 50% 100%, rgba(223, 230, 236, 0.04), transparent 40%);
     pointer-events: none;
 }
 
@@ -98,28 +134,30 @@ body.modal-open {
     height: 106px;
     object-fit: cover;
     border-radius: 50%;
-    border: 3px solid #2dc1ea;
+    border: 3px solid var(--primary);
     box-shadow:
-        0 10px 26px rgba(0, 150, 199, 0.18),
-        inset 0 1px 0 rgba(255, 255, 255, 0.65);
+        0 0 0 5px rgba(100, 209, 255, 0.05),
+        0 12px 24px rgba(0, 0, 0, 0.14),
+        0 0 16px rgba(100, 209, 255, 0.05);
     margin-bottom: 18px;
 }
 
 .tagline {
     margin: 0;
-    font-size: 0.98rem;
+    font-size: 1rem;
     line-height: 1;
-    letter-spacing: 0.22em;
+    letter-spacing: 0.24em;
     font-weight: 800;
-    color: var(--primary-strong);
+    color: var(--primary);
+    text-transform: uppercase;
 }
 
 .subtag {
     margin: 12px 0 0;
-    font-size: 0.78rem;
-    letter-spacing: 0.2em;
+    font-size: 0.82rem;
+    letter-spacing: 0.24em;
     text-transform: uppercase;
-    color: #5b7fa2;
+    color: var(--silver-soft);
 }
 
 .headline {
@@ -129,17 +167,18 @@ body.modal-open {
 
 .headline h1 {
     margin: 0;
-    font-size: 2.05rem;
-    line-height: 1.28;
+    font-size: 1.72rem;
+    line-height: 1.16;
     font-weight: 800;
     color: var(--primary);
     letter-spacing: -0.02em;
+    text-shadow: 0 0 8px rgba(100, 209, 255, 0.05);
 }
 
 .headline p {
-    margin: 18px 0 0;
-    font-size: 0.98rem;
-    color: #6787a8;
+    margin: 14px 0 0;
+    font-size: 0.95rem;
+    color: var(--text-light);
 }
 
 .actions {
@@ -181,14 +220,14 @@ body.modal-open {
     inset: 0;
     border-radius: inherit;
     box-shadow:
-        inset 2px 2px 4px rgba(255, 255, 255, 0.78),
-        inset -3px -3px 6px rgba(0, 0, 0, 0.06);
+        inset 0 1px 0 rgba(255, 255, 255, 0.14),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.08);
     pointer-events: none;
 }
 
 .icon:hover {
     transform: translateY(-3px) scale(1.03);
-    filter: brightness(1.02);
+    filter: brightness(1.03);
 }
 
 .icon svg,
@@ -198,13 +237,10 @@ body.modal-open {
     z-index: 1;
 }
 
-/* Facebook */
 .icon.facebook {
-    background: linear-gradient(145deg, #6ea6ff, #5a8df0);
+    background: linear-gradient(145deg, #8ac8ff, #68b6ff);
     color: #ffffff;
-    box-shadow:
-        var(--soft-shadow),
-        inset 0 1px 0 rgba(255, 255, 255, 0.45);
+    box-shadow: var(--soft-shadow);
 }
 
 .icon.facebook:hover {
@@ -216,31 +252,36 @@ body.modal-open {
     height: 22px;
 }
 
-/* Instagram - nền cam ấm hơn để hợp tổng thể */
+
 .icon.instagram {
     background: linear-gradient(145deg, #fff4eb, #ffe4d2);
-    box-shadow:
-        var(--soft-shadow),
-        inset 0 1px 0 rgba(255, 255, 255, 0.94);
+    color: #ffffff;
+    box-shadow: var(--soft-shadow);
 }
 
-.icon.instagram:hover {
+.icon.tiktok {
+    background: linear-gradient(145deg, #556372, #404b57);
+    box-shadow: var(--soft-shadow);
+}
+
+.icon.instagram:hover,
+.icon.tiktok:hover {
     box-shadow: var(--soft-shadow-hover);
-    background: linear-gradient(145deg, #fff1e5, #ffd9c2);
 }
 
 .icon.instagram svg {
     width: 23px;
     height: 23px;
-    filter: drop-shadow(0 1px 1px rgba(250, 126, 30, 0.08));
 }
 
-/* Zalo - dùng file SVG tải ngoài */
+.icon.tiktok svg {
+    width: 21px;
+    height: 21px;
+}
+
 .icon.zalo {
-    background: linear-gradient(145deg, #ffffff, #f2f8ff);
-    box-shadow:
-        var(--soft-shadow),
-        inset 0 1px 0 rgba(255, 255, 255, 0.96);
+    background: linear-gradient(145deg, #ffffff, #edf2f6);
+    box-shadow: var(--soft-shadow);
     display: grid;
     place-items: center;
     padding: 0;
@@ -257,38 +298,12 @@ body.modal-open {
     object-fit: contain;
     object-position: center;
     border-radius: 7px;
-    transform: translateY(0.5px);
-    filter: drop-shadow(0 1px 1px rgba(0, 104, 255, 0.10));
 }
 
-/* TikTok */
-.icon.tiktok {
-    background: linear-gradient(145deg, #2e3443, #202633);
-    box-shadow:
-        8px 8px 18px rgba(115, 134, 156, 0.22),
-        -8px -8px 18px rgba(255, 255, 255, 0.7),
-        inset 0 1px 0 rgba(255, 255, 255, 0.08);
-}
-
-.icon.tiktok:hover {
-    box-shadow:
-        10px 10px 22px rgba(115, 134, 156, 0.26),
-        -10px -10px 22px rgba(255, 255, 255, 0.74),
-        inset 0 1px 0 rgba(255, 255, 255, 0.08);
-}
-
-.icon.tiktok svg {
-    width: 21px;
-    height: 21px;
-}
-
-/* Discord */
 .icon.discord {
-    background: linear-gradient(145deg, #8cb4ff, #6d97f2);
+    background: linear-gradient(145deg, #c4d0ff, #a9b9ff);
     color: #ffffff;
-    box-shadow:
-        var(--soft-shadow),
-        inset 0 1px 0 rgba(255, 255, 255, 0.36);
+    box-shadow: var(--soft-shadow);
 }
 
 .icon.discord:hover {
@@ -300,11 +315,10 @@ body.modal-open {
     height: 23px;
 }
 
-/* Locket giữ đồng bộ với social block */
 .locket-pill {
-    min-width: 158px;
-    height: 40px;
-    padding: 0 18px;
+    min-width: 178px;
+    height: 44px;
+    padding: 0 20px;
     border-radius: 999px;
     display: inline-flex;
     align-items: center;
@@ -313,25 +327,20 @@ body.modal-open {
     text-decoration: none;
     color: #ffffff;
     font-weight: 700;
-    font-size: 0.96rem;
-    background: linear-gradient(145deg, #83b4ff, #6e98f3);
+    font-size: 0.98rem;
+    background: linear-gradient(145deg, #7edbff, #54caff);
     box-shadow:
-        8px 8px 18px rgba(130, 169, 198, 0.18),
-        -8px -8px 18px rgba(255, 255, 255, 0.84),
-        inset 0 1px 0 rgba(255, 255, 255, 0.34);
+        0 10px 20px rgba(74, 174, 214, 0.16),
+        inset 0 1px 0 rgba(255, 255, 255, 0.22);
     transition:
-        transform 0.28s cubic-bezier(.2, .8, .2, 1),
-        box-shadow 0.28s ease,
-        filter 0.28s ease;
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        filter 0.25s ease;
 }
 
 .locket-pill:hover {
-    transform: translateY(-2px) scale(1.015);
-    filter: brightness(1.02);
-    box-shadow:
-        10px 10px 22px rgba(130, 169, 198, 0.2),
-        -10px -10px 22px rgba(255, 255, 255, 0.92),
-        inset 0 1px 0 rgba(255, 255, 255, 0.36);
+    transform: translateY(-2px);
+    filter: brightness(1.015);
 }
 
 .locket-pill-icon {
@@ -351,37 +360,38 @@ body.modal-open {
 .contact-info {
     margin-top: 24px;
     padding-top: 18px;
-    border-top: 1px solid rgba(16, 164, 211, 0.12);
+    border-top: 1px solid rgba(207, 214, 222, 0.10);
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
 .contact-card {
-    height: 48px;
-    border-radius: 17px;
-    background: linear-gradient(145deg, #f7f7fb, #eef1f7);
+    height: 52px;
+    border-radius: 18px;
+    background: linear-gradient(145deg, rgba(88, 101, 116, 0.84), rgba(60, 71, 83, 0.92));
     box-shadow: var(--contact-shadow);
     display: flex;
     align-items: center;
     gap: 12px;
     padding: 0 18px;
     text-decoration: none;
-    color: #6a7790;
+    color: var(--silver-soft);
+    border: 1px solid rgba(255, 255, 255, 0.05);
     transition:
-        transform 0.28s cubic-bezier(.2, .8, .2, 1),
-        box-shadow 0.28s ease,
-        color 0.28s ease,
-        background 0.28s ease;
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        color 0.25s ease,
+        border-color 0.25s ease;
 }
 
 .contact-card:hover {
     transform: translateY(-2px);
-    color: var(--primary-strong);
+    color: var(--primary-soft);
+    border-color: rgba(100, 209, 255, 0.08);
     box-shadow:
-        inset 2px 2px 5px rgba(201, 214, 226, 0.38),
-        inset -2px -2px 5px rgba(255, 255, 255, 1),
-        0 10px 18px rgba(123, 169, 223, 0.12);
+        0 12px 22px rgba(0, 0, 0, 0.14),
+        0 0 10px rgba(100, 209, 255, 0.04);
 }
 
 .contact-icon {
@@ -391,7 +401,7 @@ body.modal-open {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    color: #7fa9d6;
+    color: #8bdeff;
 }
 
 .contact-icon svg {
@@ -408,34 +418,32 @@ body.modal-open {
 }
 
 .qr-trigger {
-    height: 48px;
-    border: none;
-    border-radius: 17px;
-    background: linear-gradient(145deg, #f7f7fb, #eef1f7);
+    height: 52px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 18px;
+    background: linear-gradient(145deg, rgba(88, 101, 116, 0.84), rgba(60, 71, 83, 0.92));
     box-shadow: var(--contact-shadow);
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 12px;
     padding: 0 18px;
-    color: var(--primary-strong);
+    color: var(--primary);
     cursor: pointer;
-    font-size: 0.97rem;
+    font-size: 0.98rem;
     font-weight: 700;
     transition:
-        transform 0.28s cubic-bezier(.2, .8, .2, 1),
-        box-shadow 0.28s ease,
-        color 0.28s ease,
-        filter 0.28s ease;
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
 }
 
 .qr-trigger:hover {
     transform: translateY(-2px);
-    filter: brightness(1.01);
+    border-color: rgba(100, 209, 255, 0.08);
     box-shadow:
-        inset 2px 2px 5px rgba(201, 214, 226, 0.38),
-        inset -2px -2px 5px rgba(255, 255, 255, 1),
-        0 10px 18px rgba(123, 169, 223, 0.12);
+        0 12px 22px rgba(0, 0, 0, 0.14),
+        0 0 10px rgba(100, 209, 255, 0.04);
 }
 
 .qr-trigger-icon {
@@ -444,7 +452,7 @@ body.modal-open {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    color: #78aee6;
+    color: #8bdeff;
 }
 
 .qr-trigger-icon svg {
@@ -456,7 +464,7 @@ body.modal-open {
 .modal-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(224, 239, 249, 0.46);
+    background: rgba(30, 37, 45, 0.60);
     backdrop-filter: blur(8px);
     display: flex;
     align-items: center;
@@ -481,11 +489,11 @@ body.modal-open {
     position: relative;
     border-radius: 28px;
     padding: 24px 20px 20px;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(245, 249, 253, 0.95));
-    border: 1px solid rgba(145, 213, 240, 0.45);
+    background: linear-gradient(180deg, rgba(77, 91, 106, 0.96), rgba(46, 57, 67, 0.98));
+    border: 1px solid rgba(214, 223, 230, 0.10);
     box-shadow:
-        0 24px 50px rgba(73, 146, 191, 0.16),
-        inset 0 1px 0 rgba(255, 255, 255, 0.92);
+        0 20px 42px rgba(0, 0, 0, 0.18),
+        0 0 16px rgba(102, 210, 255, 0.04);
     transform: translateY(14px) scale(0.97);
     transition: transform 0.28s ease;
 }
@@ -502,11 +510,9 @@ body.modal-open {
     height: 36px;
     border: none;
     border-radius: 50%;
-    background: linear-gradient(145deg, #f6f9fc, #edf3f8);
-    box-shadow:
-        6px 6px 14px rgba(130, 169, 198, 0.12),
-        -6px -6px 14px rgba(255, 255, 255, 0.92);
-    color: #7a9cc1;
+    background: linear-gradient(145deg, #5e6b79, #485460);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+    color: var(--silver-soft);
     cursor: pointer;
     display: grid;
     place-items: center;
@@ -515,9 +521,6 @@ body.modal-open {
 
 .modal-close:hover {
     transform: rotate(90deg);
-    box-shadow:
-        8px 8px 16px rgba(130, 169, 198, 0.14),
-        -8px -8px 16px rgba(255, 255, 255, 0.98);
 }
 
 .modal-close svg {
@@ -528,8 +531,8 @@ body.modal-open {
 .qr-modal h2 {
     margin: 0 0 18px;
     text-align: center;
-    font-size: 1.4rem;
-    color: var(--primary-strong);
+    font-size: 1.35rem;
+    color: var(--primary);
 }
 
 .qr-box {
@@ -538,11 +541,8 @@ body.modal-open {
     margin: 0 auto 18px;
     padding: 14px;
     border-radius: 24px;
-    background: linear-gradient(145deg, #f8fbff, #eef3f9);
-    box-shadow:
-        inset 2px 2px 5px rgba(201, 214, 226, 0.36),
-        inset -2px -2px 5px rgba(255, 255, 255, 1),
-        0 8px 18px rgba(123, 169, 223, 0.1);
+    background: linear-gradient(145deg, #5b6977, #434f5b);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
 }
 
 .qr-image {
@@ -567,19 +567,19 @@ body.modal-open {
     gap: 4px;
     padding: 10px 12px;
     border-radius: 14px;
-    background: rgba(255, 255, 255, 0.62);
-    border: 1px solid rgba(128, 196, 229, 0.16);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.04);
 }
 
 .bank-label {
     font-size: 0.8rem;
-    color: #7a96b3;
+    color: var(--text-dim);
 }
 
 .bank-value {
     font-size: 0.97rem;
     font-weight: 700;
-    color: #4f78a1;
+    color: var(--text);
     word-break: break-word;
 }
 
@@ -588,7 +588,7 @@ body.modal-open {
     height: 46px;
     border: none;
     border-radius: 16px;
-    background: linear-gradient(145deg, #86b7ff, #6f99f3);
+    background: linear-gradient(145deg, #79d8ff, #4fc7ff);
     color: #ffffff;
     font-size: 0.96rem;
     font-weight: 700;
@@ -598,26 +598,21 @@ body.modal-open {
     justify-content: center;
     gap: 10px;
     box-shadow:
-        8px 8px 18px rgba(130, 169, 198, 0.18),
-        -8px -8px 18px rgba(255, 255, 255, 0.82),
-        inset 0 1px 0 rgba(255, 255, 255, 0.32);
+        0 10px 20px rgba(72, 171, 214, 0.18),
+        inset 0 1px 0 rgba(255, 255, 255, 0.18);
     transition:
-        transform 0.28s cubic-bezier(.2, .8, .2, 1),
-        box-shadow 0.28s ease,
-        filter 0.28s ease;
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        filter 0.25s ease;
 }
 
 .copy-btn:hover {
     transform: translateY(-2px);
     filter: brightness(1.02);
-    box-shadow:
-        10px 10px 22px rgba(130, 169, 198, 0.2),
-        -10px -10px 22px rgba(255, 255, 255, 0.9),
-        inset 0 1px 0 rgba(255, 255, 255, 0.36);
 }
 
 .copy-btn.copied {
-    background: linear-gradient(145deg, #5fc1df, #43aed0);
+    background: linear-gradient(145deg, #9be3ff, #67d1ff);
 }
 
 .copy-btn-icon {
@@ -663,16 +658,12 @@ body.modal-open {
     }
 
     .headline h1 {
-        font-size: 1.78rem;
+        font-size: 1.62rem;
     }
 
     .headline p {
         margin-top: 16px;
         font-size: 0.92rem;
-    }
-
-    .socials-row-main {
-        gap: 9px;
     }
 
     .socials-row-main {
@@ -711,8 +702,8 @@ body.modal-open {
     }
 
     .locket-pill {
-        min-width: 144px;
-        height: 37px;
+        min-width: 150px;
+        height: 40px;
         font-size: 0.9rem;
     }
 
@@ -723,7 +714,7 @@ body.modal-open {
 
     .contact-card,
     .qr-trigger {
-        height: 46px;
+        height: 48px;
         padding: 0 15px;
         border-radius: 16px;
     }
