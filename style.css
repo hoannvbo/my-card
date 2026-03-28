@@ -487,6 +487,65 @@ body.modal-open {
     color: #ff6dac;
 }
 
+.modal-overlay.show {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.modal-overlay.show .qr-modal {
+    transform: translateY(0) scale(1);
+}
+
+.modal-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #2a1d30, #1b131f);
+    color: #ff98c5;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    box-shadow:
+        0 8px 18px rgba(0, 0, 0, 0.22),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    transition: transform 0.24s ease, box-shadow 0.24s ease, filter 0.24s ease;
+}
+
+.modal-close:hover {
+    transform: rotate(90deg);
+    filter: brightness(1.05);
+    box-shadow:
+        0 10px 22px rgba(0, 0, 0, 0.28),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.modal-close svg {
+    width: 18px;
+    height: 18px;
+    display: block;
+}
+
+.qr-image {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 16px;
+    background: #ffffff;
+}
+
+.bank-info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
 .qr-box {
     width: 100%;
     max-width: 210px;
@@ -660,9 +719,7 @@ body.modal-open {
 
     .contact-card,
     .qr-trigger {
-        height: 46px;
-        padding: 0 15px;
-        border-radius: 16px;
+        width: 100%;
     }
 
     .contact-text,

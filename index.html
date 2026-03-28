@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bow Business Card</title>
+    <title>𝑩𝒐̂́𝒏𝒈 𝑿𝒊𝒏𝒉ᥫ᭡</title>
     <link rel="stylesheet" href="style.css" />
 </head>
 
@@ -15,13 +15,12 @@
 
             <header class="brand">
                 <img src="./asset/avtBongXau.jpg" alt="Profile Image" class="profile-image" id="profile-image" />
-                <p class="tagline">BOW</p>
-                <p class="subtag">Slogan here</p>
+                <p class="tagline">𝑩𝒐̂́𝒏𝒈 𝑿𝒊𝒏𝒉ᥫ᭡</p>
+                <p class="subtag">I'm Bong</p>
             </header>
 
             <section class="headline">
-                <h1>Premium business cards from bow.</h1>
-                <p>Premium business cards from bow.</p>
+                <h1>Be yourself don't be anymore else</h1>
             </section>
 
             <section class="actions" aria-label="Follow us">
@@ -95,7 +94,7 @@
                                 d="M3 6.8A1.8 1.8 0 0 1 4.8 5h14.4A1.8 1.8 0 0 1 21 6.8v10.4A1.8 1.8 0 0 1 19.2 19H4.8A1.8 1.8 0 0 1 3 17.2V6.8Zm1.8-.3 7.2 5 7.2-5H4.8Zm14.4 11V8.4l-6.7 4.7a1 1 0 0 1-1.1 0L4.8 8.4v9.1h14.4Z" />
                         </svg>
                     </span>
-                    <span class="contact-text">hoankb4@gmail.com</span>
+                    <span class="contact-text">hoancoi22gmail.com@icloud.com</span>
                 </a>
 
                 <a class="contact-card" href="tel:+84966821315">
@@ -105,7 +104,7 @@
                                 d="M6.6 10.8a15.8 15.8 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1.1-.3 1.2.4 2.5.7 3.8.7.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.3.2 2.6.7 3.8.1.4 0 .8-.3 1.1l-2.2 2.2Z" />
                         </svg>
                     </span>
-                    <span class="contact-text">+84 966 821 315</span>
+                    <span class="contact-text">+84 969 024 143</span>
                 </a>
 
                 <button class="qr-trigger" id="openQrBtn" type="button" aria-haspopup="dialog" aria-controls="qrModal">
@@ -163,7 +162,61 @@
         </div>
     </div>
 
-    <script src="./script.js"></script>
+    <script>
+        const openQrBtn = document.getElementById("openQrBtn");
+        const closeQrBtn = document.getElementById("closeQrBtn");
+        const qrModal = document.getElementById("qrModal");
+        const copyAccountBtn = document.getElementById("copyAccountBtn");
+        const bankAccountNumber = document.getElementById("bankAccountNumber");
+        const copyBtnText = document.getElementById("copyBtnText");
+
+        function openModal() {
+            qrModal.classList.add("show");
+            qrModal.setAttribute("aria-hidden", "false");
+            document.body.classList.add("modal-open");
+        }
+
+        function closeModal() {
+            qrModal.classList.remove("show");
+            qrModal.setAttribute("aria-hidden", "true");
+            document.body.classList.remove("modal-open");
+        }
+
+        openQrBtn.addEventListener("click", openModal);
+        closeQrBtn.addEventListener("click", closeModal);
+
+        qrModal.addEventListener("click", function (event) {
+            if (event.target === qrModal) {
+                closeModal();
+            }
+        });
+
+        document.addEventListener("keydown", function (event) {
+            if (event.key === "Escape" && qrModal.classList.contains("show")) {
+                closeModal();
+            }
+        });
+
+        copyAccountBtn.addEventListener("click", async function () {
+            const accountText = bankAccountNumber.textContent.trim();
+
+            try {
+                await navigator.clipboard.writeText(accountText);
+                copyBtnText.textContent = "Đã copy số tài khoản";
+                copyAccountBtn.classList.add("copied");
+
+                setTimeout(() => {
+                    copyBtnText.textContent = "Copy số tài khoản";
+                    copyAccountBtn.classList.remove("copied");
+                }, 1800);
+            } catch (error) {
+                copyBtnText.textContent = "Không copy được";
+                setTimeout(() => {
+                    copyBtnText.textContent = "Copy số tài khoản";
+                }, 1800);
+            }
+        });
+    </script>
 </body>
 
 </html>
