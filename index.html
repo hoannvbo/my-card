@@ -14,15 +14,13 @@
             <div class="glow-bg"></div>
 
             <header class="brand">
-                <img src="./asset/589659615_1985232009066629_177470023401082624_n.jpg" alt="Profile Image"
-                    class="profile-image" id="profile-image" />
+                <img src="./asset/bow.jpg" alt="Profile Image" class="profile-image" id="profile-image" />
                 <p class="tagline">BOW</p>
-                <p class="subtag">Slogan here</p>
+                <p class="subtag">I'm BOw</p>
             </header>
 
             <section class="headline">
-                <h1>Premium business cards from bow.</h1>
-                <p>Premium business cards from bow.</p>
+                <h1>I'M HERE TO SERVE YOU</h1>
             </section>
 
             <section class="actions" aria-label="Follow us">
@@ -172,60 +170,8 @@
         </div>
     </div>
 
-    <script>
-        const openQrBtn = document.getElementById("openQrBtn");
-        const closeQrBtn = document.getElementById("closeQrBtn");
-        const qrModal = document.getElementById("qrModal");
-        const copyAccountBtn = document.getElementById("copyAccountBtn");
-        const bankAccountNumber = document.getElementById("bankAccountNumber");
-        const copyBtnText = document.getElementById("copyBtnText");
+    <script src="./script.js">
 
-        function openModal() {
-            qrModal.classList.add("show");
-            qrModal.setAttribute("aria-hidden", "false");
-            document.body.classList.add("modal-open");
-        }
-
-        function closeModal() {
-            qrModal.classList.remove("show");
-            qrModal.setAttribute("aria-hidden", "true");
-            document.body.classList.remove("modal-open");
-        }
-
-        openQrBtn.addEventListener("click", openModal);
-        closeQrBtn.addEventListener("click", closeModal);
-
-        qrModal.addEventListener("click", function (event) {
-            if (event.target === qrModal) {
-                closeModal();
-            }
-        });
-
-        document.addEventListener("keydown", function (event) {
-            if (event.key === "Escape" && qrModal.classList.contains("show")) {
-                closeModal();
-            }
-        });
-
-        copyAccountBtn.addEventListener("click", async function () {
-            const accountText = bankAccountNumber.textContent.trim();
-
-            try {
-                await navigator.clipboard.writeText(accountText);
-                copyBtnText.textContent = "Đã copy số tài khoản";
-                copyAccountBtn.classList.add("copied");
-
-                setTimeout(() => {
-                    copyBtnText.textContent = "Copy số tài khoản";
-                    copyAccountBtn.classList.remove("copied");
-                }, 1800);
-            } catch (error) {
-                copyBtnText.textContent = "Không copy được";
-                setTimeout(() => {
-                    copyBtnText.textContent = "Copy số tài khoản";
-                }, 1800);
-            }
-        });
     </script>
 </body>
 
