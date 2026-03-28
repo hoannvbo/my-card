@@ -579,7 +579,7 @@ body.modal-open {
 .bank-value {
     font-size: 0.97rem;
     font-weight: 700;
-    color: var(--text);
+    color: #4fc7ff;
     word-break: break-word;
 }
 
