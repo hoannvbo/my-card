@@ -143,7 +143,6 @@ body.modal-open {
     border-radius: 50%;
     border: 4px solid var(--primary);
     box-shadow:
-        0 0 0 10px rgba(255, 255, 255, 0.56),
         0 12px 30px rgba(84, 196, 238, 0.22);
     margin-bottom: 18px;
 }
